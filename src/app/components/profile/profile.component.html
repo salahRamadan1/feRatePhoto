@@ -1,0 +1,83 @@
+<section class="home pt-3 mt-5">
+  <div class=" container    ">
+    <!-- setting for change img profile -->
+    <i class="fa-solid fa-gear setting rounded-3 shadow-lg " data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
+    <div class=" row  g-3  justify-content-center">
+      <!-- botton add -->
+      <button class=" btn btn-outline-secondary w-50 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+        Photo
+      </button>
+      <!-- err -->
+      <div class=" alert alert-danger text-center" *ngIf="errSendImg">
+        <h3>{{errSendImg}}</h3>
+      </div>
+      <!-- for loop img for user  -->
+      <div *ngFor="let data of info" class="  col-md-7  d-flex       justify-content-center">
+        <div class="items  shadow-lg position-relative">
+          <div class=" d-flex align-items-center">
+            <img [src]="data.createdBy.profile_Pic" class="profilePic me-3  rounded-3 " alt="">
+            <h3 class=" mt-2">{{data.createdBy.first_name}} {{data.createdBy.last_name}}</h3>
+            <div class="  position-absolute end-0 top-0 me-3 mt-3 ">
+              <div (click)="deleteImg(data._id)">
+                <i class="fa-solid fa-trash deleted"></i>
+              </div>
+              <br>
+            </div>
+          </div>
+          <p>{{data.createdAt|date}}</p>
+          <hr>
+          <h3 class=" ms-3 text-center">{{data.title | uppercase}}</h3>
+          <img [src]="data.path" class="w-100 rounded-2" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ModalAdd -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Photo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formImg" (ngSubmit)="sendImg()">
+          <input type="text" id="title" name="title" class=" form-control">
+          <label for="photo" class=" d-flex justify-content-center my-2 btn btn-outline-info"> choose Photo</label>
+          <input id="photo" class=" d-none" (change)="choosePhoto($event)" name="path" type="file" required>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">ADD</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- ModalSetting -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Change img</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body   ">
+        <form [formGroup]="formSettingImg" (ngSubmit)="changeProfilePic()">
+          <label for="imgSe" class=" btn btn-info w-100 mt-2"> choose your profile picture</label>
+          <input type="file" (change)="choosePhoto($event)" id="imgSe" class=" form-control d-none">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Change</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

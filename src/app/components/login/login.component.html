@@ -1,0 +1,39 @@
+<section class=" login">
+    <div class=" container pt-5">
+        <div class=" row justify-content-center">
+            <div class=" col-md-5 ">
+                <div class=" shadow-lg item mt-5">
+                    <div *ngIf="err" class=" text-center alert alert-danger">
+                        <h5>{{err |uppercase}}</h5>
+                    </div>
+                  
+                    <form [formGroup]="loginForm" (ngSubmit)="loginForms()">
+             
+                        <!-- email -->
+                        <input type="email" formControlName="email" class=" form-control mt-3 " placeholder=" email">
+                        <div class=" text-danger"
+                            *ngIf="loginForm.get('email')?.errors &&loginForm.get('email')?.touched">
+                            <p *ngIf="loginForm.get('email')?.errors?.['required']">email is required</p>
+                            <p *ngIf="loginForm.get('email')?.errors?.['email']">write the correct email</p>
+                        </div>
+                        <!-- password -->
+                        <input type="password" formControlName="password" class=" form-control mt-3 "
+                            placeholder=" password">
+                        <div class=" text-danger"
+                            *ngIf="loginForm.get('password')?.errors &&loginForm.get('password')?.touched">
+                            <p *ngIf="loginForm.get('password')?.errors?.['required']">password is required</p>
+                            <p *ngIf="loginForm.get('password')?.errors?.['maxlength']">password is maxlength 15</p>
+                            <p *ngIf="loginForm.get('password')?.errors?.['minlength']">password is minlength 6 </p>
+                        </div>
+                <!-- botton login  -->
+                        <button [disabled]="loginForm.invalid" type="submit"
+                            class=" btn shadow-lg   mt-3 w-100"> Register</button>
+                            <!--  navigate to register  -->
+                        <a routerLink="/register" class="  px-3 float-end "> I do not  have email </a>
+                        <div class=" clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

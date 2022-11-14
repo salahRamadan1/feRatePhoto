@@ -1,0 +1,47 @@
+<section class="home pt-3 mt-5">
+    <div class=" container    ">
+        <div class=" row  g-3  justify-content-center">
+            <!-- not found img -->
+            <div *ngIf="notFoundImg" class=" text-center mt-5  ">
+                <h3>{{notFoundImg |uppercase}}</h3>
+            </div>
+            <!-- for lop data -->
+            <div *ngFor="let data of info" class="  col-md-7     position-relative    ">
+                <div class=" position-absolute top-0 end-0">
+                    <div *ngIf="isLoggedIn" class="  mt-2 me-3 ">
+                        <!-- up img -->
+                        <div id="love" (click)="loveImg( data._id )">
+                            <div class=" d-flex">
+                                <p class=" me-2">{{data.up.length}}</p>
+                                <i class="fa-solid fa-up-long love"></i>
+                            </div>
+                        </div>
+                        <!-- down img -->
+                        <div id="hate" (click)="hateImg(data._id)">
+                            <div class=" d-flex">
+                                <p class=" me-2">{{data.down.length}}</p>
+                                <i class="fa-solid fa-down-long hate"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="items  shadow-lg">
+                    <div class=" d-flex align-items-center">
+                        <!-- profile img -->
+                        <img [src]="data.createdBy.profile_Pic" class="profilePic me-3 rounded-3  " alt="">
+                        <!-- info user -->
+                        <h3 class=" mt-2">{{data.createdBy.first_name}} {{data.createdBy.last_name}}</h3>
+                    </div>
+                    <!-- data created at  -->
+                    <p>{{data.createdAt|date}}</p>
+                    <hr>
+                    <!-- title -->
+                    <h3 class=" ms-3 text-center">{{data.title | uppercase}}</h3>
+                    <!-- img  -->
+                    <img [src]="data.path" class="w-100 rounded-2" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

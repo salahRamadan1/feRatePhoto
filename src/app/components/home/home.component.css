@@ -1,0 +1,29 @@
+ 
+ 
+.item{
+    background-color: aliceblue;
+    width: 500px;
+    height: 100px;
+}
+.items {
+
+    padding: 20px;
+    border: solid 1px white;
+    border-radius: 20px;
+}
+ .profilePic{
+    width: 40px;
+    
+     
+ }
+ .love ,.hate{
+ color: #845EC2;
+  cursor: pointer;
+  padding: 5px;
+  border: solid 1px white;
+  border-radius: 20px;
+ }
+ .like{
+  display: none;
+ }
+ 
